@@ -10,26 +10,20 @@ import {DeviceMotion} from "@ionic-native/device-motion";
 import {Flashlight} from "@ionic-native/flashlight";
 import {MediaPlugin} from "@ionic-native/media";
 import {LightSaberService} from "../providers/light-saber/light-saber.service";
-import {InfoPage} from "../pages/info/info";
-import {PersonService} from "../providers/person/person.service";
-import {HttpModule} from "@angular/http";
 
 @NgModule({
   declarations: [
     MyApp,
-    HomePage,
-    InfoPage
+    HomePage
   ],
   imports: [
     BrowserModule,
-    HttpModule,
     IonicModule.forRoot(MyApp),
   ],
   bootstrap: [IonicApp],
   entryComponents: [
     MyApp,
-    HomePage,
-    InfoPage
+    HomePage
   ],
   providers: [
     StatusBar,
@@ -38,8 +32,7 @@ import {HttpModule} from "@angular/http";
     DeviceMotion,
     Flashlight,
     MediaPlugin,
-    LightSaberService,
-    PersonService
+    LightSaberService
   ]
 })
 export class AppModule {

@@ -2,8 +2,6 @@ import {Component} from "@angular/core";
 import {DeviceMotion, DeviceMotionAccelerationData} from "@ionic-native/device-motion";
 import {Flashlight} from "@ionic-native/flashlight";
 import {LightSaberService} from "../../providers/light-saber/light-saber.service";
-import {NavController} from "ionic-angular";
-import {InfoPage} from "../info/info";
 
 @Component({
   selector: 'page-home',
@@ -15,8 +13,7 @@ export class HomePage {
 
   constructor(private deviceMotion: DeviceMotion,
               private flashlight: Flashlight,
-              private lightSaberService: LightSaberService,
-              private nav: NavController) {
+              private lightSaberService: LightSaberService) {
   }
 
   public ionViewDidLoad(): void {
@@ -37,10 +34,6 @@ export class HomePage {
     });
   }
 
-  public info(): void {
-    this.nav.push(InfoPage);
-  }
-
   private getShake(acceleration: DeviceMotionAccelerationData): number {
     let measurementsChange: DeviceMotionAccelerationData = {
       x: 0,
@@ -59,18 +52,18 @@ export class HomePage {
     let moveDetection = 10;
     let shakeDetection = 35;
 
-    if (this.isShake(measurementsChange, shakeDetection)) {
+    if (HomePage.isShake(measurementsChange, shakeDetection)) {
       return 2;
     }
 
-    if (this.isShake(measurementsChange, moveDetection)) {
+    if (HomePage.isShake(measurementsChange, moveDetection)) {
       return 1;
     }
 
     return 0;
   }
 
-  private isShake(measurementsChange: DeviceMotionAccelerationData, move: number): boolean {
+  private static isShake(measurementsChange: DeviceMotionAccelerationData, move: number): boolean {
     return measurementsChange.x > move || measurementsChange.x < -move ||
       measurementsChange.y > move || measurementsChange.y < -move ||
       measurementsChange.z > move || measurementsChange.z < -move;
